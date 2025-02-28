@@ -9,5 +9,4 @@ public class TanakaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TanakaApplication.class, args);
 	}
-
 }

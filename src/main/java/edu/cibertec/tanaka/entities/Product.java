@@ -24,6 +24,7 @@ public class Product {
 	private int stock;
 	private double precio;
 	private String image;
+	private boolean state;
 	
 	public Product() {}
 
@@ -82,6 +83,14 @@ public class Product {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+	
+	public boolean getState() {
+		return state;
+	}
+	
+	public void setState(boolean state) {
+		this.state = state;
 	}
 
 	@Override

@@ -27,7 +27,8 @@ public class ProductController {
   
   @GetMapping
   public List<Product> findAll(){
-	  return productRepository.findAll();
+	  //return productRepository.findAll();
+	  return productRepository.findByState(true);
   }
   
   @GetMapping("/{id}")
@@ -66,7 +67,7 @@ public class ProductController {
 	  Optional<Product> optProduct = productRepository.findById(id);
 	  if(optProduct.isPresent()) {
 		  Product oProduct = optProduct.get();
-		  oProduct.setStock(product.getStock());
+		  oProduct.setState(product.getState());
 		  return productRepository.save(oProduct);
 	  }
 	  else {
@@ -74,8 +75,20 @@ public class ProductController {
 	  }
   }
   
+  //@DeleteMapping("/{id}")
+  //public void hardDelete(@PathVariable Long id) {
+	//  productRepository.deleteById(id);
+  //}
+  
   @DeleteMapping("/{id}")
-  public void hardDelete(@PathVariable Long id) {
-	  productRepository.deleteById(id);
+  public void softDelete(Long id) {
+	  Optional<Product> optProduct = productRepository.findById(id);
+	  if(optProduct.isPresent()) {
+		  Product oProduct = optProduct.get();
+		  oProduct.setState(false);
+		  productRepository.save(oProduct);
+	  }else {
+		  throw new RuntimeException("Product not found");
+	  }
   }
 }
