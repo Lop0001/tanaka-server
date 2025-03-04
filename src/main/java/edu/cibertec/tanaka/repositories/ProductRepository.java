@@ -15,4 +15,7 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
 	
 	@Query(value="select * from tanaka.tbl_products where state=1;", nativeQuery=true)
 	List<Product> findAllCustomSql();
+	
+	@Query(value="select p from Product p where p.state=true")
+	List<Product> findAllCustomJpql();
 }
