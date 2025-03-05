@@ -40,4 +40,9 @@ public class ProductServiceImp implements ProductService {
 		product.setState(true);
 		return productRepository.save(product);
 	}
+	
+	@Override
+	public Product softDelete(Product product) {
+		return productRepository.save(product);
+	}
 }
