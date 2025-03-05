@@ -1,7 +1,7 @@
 package edu.cibertec.tanaka.repositories;
 
 import java.util.List;
-
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -19,4 +19,6 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
 	
 	@Query(value="select p from Product p where p.state=true")
 	List<Product> findAllCustomJpql();
+	
+	Optional<Product> findByStateAndId(boolean state, Long id);
 }
